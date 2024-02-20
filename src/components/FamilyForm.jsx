@@ -171,6 +171,7 @@ const FamilyForm = () => {
 
         // Log JSON string to the console
         console.log(jsonString);
+        console.log(jsonData);
       }}
     >
       {({ values }) => (

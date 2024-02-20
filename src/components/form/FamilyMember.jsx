@@ -161,11 +161,11 @@ const FamilyMemberDetails = ({ member, index }) => (
       </div>
       <div className="mb-4">
         <label className="block mb-2">Contact</label>
-        {member.contact.map((contactField, index) => (
-          <div key={index}>
+        {member.contact.map((contactField, jndex) => (
+          <div key={jndex}>
             {/* <label>{contactField.name}</label> */}
             <Field
-              name={`family_details.contact.${index}.value`}
+              name={`family_details.${index}.contact.${jndex}.value`}
               type="text"
               placeholder={contactField.name}
               className="w-full p-2 border rounded"
@@ -176,19 +176,34 @@ const FamilyMemberDetails = ({ member, index }) => (
 
       <div className="mb-4">
         <label className="block mb-2">Current Address</label>
+        {member.current_address.map((addressField, jndex) => (
+          <div key={jndex}>
+            <label>{addressField.type}</label>
+            <Field
+              name={`family_details.${index}.current_address.${jndex}.value`}
+              type="text"
+              placeholder={addressField.name}
+              className="w-full p-2 border rounded"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* <div className="mb-4">
+        <label className="block mb-2">Current Address</label>
         {Array.isArray(member.current_address) &&
-          member.current_address.map((currentAddress, index) => (
-            <div key={index}>
-              {/* <label>{contactField.name}</label> */}
+          member.current_address.map((currentAddress, jndex) => (
+            <div key={jndex}>
+             
               <Field
-                name={`current_address.${index}.value`}
+                name={`family_details.${index}.current_address.${jndex}.value`}
                 type="text"
                 placeholder={currentAddress.name}
                 className="w-full p-2 border rounded"
               />
             </div>
           ))}
-      </div>
+      </div> */}
     </div>
   </div>
 );
