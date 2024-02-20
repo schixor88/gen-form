@@ -447,7 +447,7 @@ const FamilyForm = () => {
       {({ values }) => (
         <Form className="max-w-2xl mx-auto mt-8 p-4 bg-gray-100 rounded">
           <div className="mb-4">
-            <label className="block">Generation/पुस्ता</label>
+            <label className="block">Generation</label>
             <div className="flex">
               {[...Array(11)].map((_, index) => (
                 <Field
@@ -695,59 +695,19 @@ const FamilyForm = () => {
 
                     <div className="mb-4">
                       <label className="block mb-2">Current Address</label>
-                      {member.current_address.map((currentAddress, index) => (
-                        <div key={index}>
-                          {/* <label>{contactField.name}</label> */}
-                          <Field
-                            name={`current_address.${index}.value`}
-                            type="text"
-                            placeholder={currentAddress.name}
-                            className="w-full p-2 border rounded"
-                          />
-                        </div>
-                      ))}
+                      {Array.isArray(member.current_address) &&
+                        member.current_address.map((currentAddress, index) => (
+                          <div key={index}>
+                            {/* <label>{contactField.name}</label> */}
+                            <Field
+                              name={`current_address.${index}.value`}
+                              type="text"
+                              placeholder={currentAddress.name}
+                              className="w-full p-2 border rounded"
+                            />
+                          </div>
+                        ))}
                     </div>
-
-                    {/* <div className="mb-2">
-                      <label>Province/Country</label>
-                      <Field
-                        name={`family_details.${index}.current_address.province_country`}
-                        type="text"
-                        className="w-full p-2 border rounded"
-                      />
-                    </div>
-                    <div className="mb-2">
-                      <label>District</label>
-                      <Field
-                        name={`family_details.${index}.current_address.district`}
-                        type="text"
-                        className="w-full p-2 border rounded"
-                      />
-                    </div>
-                    <div className="mb-2">
-                      <label>Municipality</label>
-                      <Field
-                        name={`family_details.${index}.current_address.municipality`}
-                        type="text"
-                        className="w-full p-2 border rounded"
-                      />
-                    </div>
-                    <div className="mb-2">
-                      <label>Ward</label>
-                      <Field
-                        name={`family_details.${index}.current_address.ward`}
-                        type="text"
-                        className="w-full p-2 border rounded"
-                      />
-                    </div>
-                    <div className="mb-2">
-                      <label>Tole</label>
-                      <Field
-                        name={`family_details.${index}.current_address.tole`}
-                        type="text"
-                        className="w-full p-2 border rounded"
-                      />
-                    </div> */}
                   </div>
                 ))}
                 <button
@@ -763,17 +723,54 @@ const FamilyForm = () => {
                       education: "",
                       work_accomplishments: [],
                       work_profession: [],
-                      current_address: {
-                        province_country: "",
-                        district: "",
-                        municipality: "",
-                        ward: "",
-                        tole: "",
-                      },
-                      contact: ["", "", ""],
+                      current_address: [
+                        // Initialize current_address as an array
+                        {
+                          name: "Province/Country",
+                          type: "province_country",
+                          value: "",
+                        },
+                        {
+                          name: "District",
+                          type: "district",
+                          value: "",
+                        },
+                        {
+                          name: "Municipality",
+                          type: "municipality",
+                          value: "",
+                        },
+                        {
+                          name: "Ward Number",
+                          type: "ward",
+                          value: "",
+                        },
+                        {
+                          name: "Tole Name",
+                          type: "tole",
+                          value: "",
+                        },
+                      ],
+                      contact: [
+                        {
+                          name: "Mobile Number",
+                          type: "mobile",
+                          value: "",
+                        },
+                        {
+                          name: "Landline Number",
+                          type: "landline",
+                          value: "",
+                        },
+                        {
+                          name: "Email",
+                          type: "email",
+                          value: "",
+                        },
+                      ],
                     })
                   }
-                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                  className="bg-blue-500 text-white px-4 py-2 rounded my-6"
                 >
                   Add Family Member
                 </button>
