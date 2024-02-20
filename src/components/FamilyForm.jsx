@@ -394,10 +394,19 @@ const FamilyForm = () => {
               type: "en",
               value: name,
             })),
-            _current_address: values._current_address.map((addressField) => ({
-              type: addressField.type,
-              name: addressField.name,
-              value: addressField.value,
+            _current_address: values._current_address.map((value, index) => ({
+              type:
+                index == 0
+                  ? "province_country"
+                  : index === 1
+                  ? "district"
+                  : index === 2
+                  ? "municipality"
+                  : index == 3
+                  ? "ward"
+                  : "tole",
+              name: value.name,
+              value: value.value,
             })),
             _contact: values._contact.map((value, index) => ({
               type: index === 0 ? "mobile" : index === 1 ? "landline" : "email",
@@ -685,19 +694,18 @@ const FamilyForm = () => {
                     </div>
 
                     <div className="mb-4">
-                      <label>Current Address</label>
-                      {Object.entries(member.current_address).map(
-                        ([key, addressField], i) => (
-                          <div key={i}>
-                            <Field
-                              name={`family_details.${index}.current_address.${key}.value`}
-                              type="text"
-                              placeholder={addressField.name}
-                              className="w-full p-2 border rounded"
-                            />
-                          </div>
-                        )
-                      )}
+                      <label className="block mb-2">Current Address</label>
+                      {member.current_address.map((currentAddress, index) => (
+                        <div key={index}>
+                          {/* <label>{contactField.name}</label> */}
+                          <Field
+                            name={`current_address.${index}.value`}
+                            type="text"
+                            placeholder={currentAddress.name}
+                            className="w-full p-2 border rounded"
+                          />
+                        </div>
+                      ))}
                     </div>
 
                     {/* <div className="mb-2">
