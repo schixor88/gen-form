@@ -175,6 +175,7 @@ const FamilyForm = () => {
     >
       {({ values }) => (
         <Form className="max-w-2xl mx-auto mt-8 p-4 bg-gray-100 rounded">
+          <pre>{JSON.stringify(values.family_details, null, 4)}</pre>
           <div className="mb-4">
             <label className="block">Generation</label>
             <div className="flex">

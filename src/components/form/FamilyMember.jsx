@@ -165,7 +165,7 @@ const FamilyMemberDetails = ({ member, index }) => (
           <div key={index}>
             {/* <label>{contactField.name}</label> */}
             <Field
-              name={`contact.${index}.value`}
+              name={`family_details.contact.${index}.value`}
               type="text"
               placeholder={contactField.name}
               className="w-full p-2 border rounded"
