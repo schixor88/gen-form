@@ -178,7 +178,7 @@ const FamilyMemberDetails = ({ member, index }) => (
         <label className="block mb-2">Current Address</label>
         {member.current_address.map((addressField, jndex) => (
           <div key={jndex}>
-            <label>{addressField.type}</label>
+            {/* <label>{addressField.type}</label> */}
             <Field
               name={`family_details.${index}.current_address.${jndex}.value`}
               type="text"

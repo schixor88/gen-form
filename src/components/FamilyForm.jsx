@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { Formik, Form, Field, FieldArray } from "formik";
 import FamilyMemberDetails from "./form/FamilyMember";
 
-const FamilyForm = () => {
+const FamilyForm = ({ onFormSubmit }) => {
   const [numFamilyMembers, setNumFamilyMembers] = useState(1);
-
-  const incrementFamilyMembers = () => {
-    setNumFamilyMembers((prevNum) => prevNum + 1);
-  };
 
   return (
     <Formik
       initialValues={{
-        _identifier: "",
+        _generation: "",
         _family_head_name: ["", ""],
         _current_address: [
           {
@@ -62,9 +58,9 @@ const FamilyForm = () => {
           name: { f_name: "", m_name: "", l_name: "" },
           relation: { a: 0, b: 1 },
           gender: "",
-          dob_yyyy: "",
-          dob_mm: "",
-          dob_dd: "",
+          // dob_yyyy: "",
+          // dob_mm: "",
+          // dob_dd: "",
           education: "",
           work_accomplishments: [], // Initialize as an empty array
           work_profession: [], // Initialize as an empty array
@@ -117,7 +113,7 @@ const FamilyForm = () => {
       onSubmit={(values) => {
         // Convert values to JSON format
         const jsonData = {
-          _identifier: values._identifier,
+          _generation: values._generation,
           _meta: {
             _family_head_name: values._family_head_name.map((name) => ({
               type: "en",
@@ -150,10 +146,10 @@ const FamilyForm = () => {
               mm: member.dob_mm,
               dd: member.dob_dd,
             },
-            work: {
-              accomplishments: member.work_accomplishments,
-              profession: member.work_profession,
-            },
+            // work: {
+            //   accomplishments: member.work_accomplishments,
+            //   profession: member.work_profession,
+            // },
             current_address: member.current_address.map((addressField) => ({
               type: addressField.type,
               name: addressField.name,
@@ -164,10 +160,6 @@ const FamilyForm = () => {
               name: contactField.name,
               value: contactField.value,
             })),
-            // contact: member.contact.map((value, index) => ({
-            //   type: index === 0 ? "mobile" : index === 1 ? "landline" : "email",
-            //   value,
-            // })),
           })),
         };
 
@@ -177,18 +169,19 @@ const FamilyForm = () => {
         // Log JSON string to the console
         console.log(jsonString);
         console.log(jsonData);
+        onFormSubmit(jsonData);
       }}
     >
       {({ values }) => (
-        <Form className="max-w-2xl mx-auto mt-8 p-4 bg-gray-100 rounded">
-          <pre>{JSON.stringify(values.family_details, null, 4)}</pre>
+        <Form className="max-w-2xl mx-auto p-4 bg-gray-100 rounded">
+          {/* <pre>{JSON.stringify(values.family_details, null, 4)}</pre> */}
           <div className="mb-4">
             <label className="block">Generation</label>
             <div className="flex">
               {[...Array(11)].map((_, index) => (
                 <Field
                   key={index}
-                  name={`_identifier.${index}`}
+                  name={`_generation.${index}`}
                   type="text"
                   maxLength={1}
                   className="w-8 h-8 text-center border rounded mr-1"
