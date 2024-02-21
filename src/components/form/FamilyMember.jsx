@@ -188,22 +188,6 @@ const FamilyMemberDetails = ({ member, index }) => (
           </div>
         ))}
       </div>
-
-      {/* <div className="mb-4">
-        <label className="block mb-2">Current Address</label>
-        {Array.isArray(member.current_address) &&
-          member.current_address.map((currentAddress, jndex) => (
-            <div key={jndex}>
-             
-              <Field
-                name={`family_details.${index}.current_address.${jndex}.value`}
-                type="text"
-                placeholder={currentAddress.name}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-          ))}
-      </div> */}
     </div>
   </div>
 );

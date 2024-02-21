@@ -154,15 +154,20 @@ const FamilyForm = () => {
               accomplishments: member.work_accomplishments,
               profession: member.work_profession,
             },
-            current_address: values._current_address.map((addressField) => ({
+            current_address: member.current_address.map((addressField) => ({
               type: addressField.type,
               name: addressField.name,
               value: addressField.value,
             })),
-            contact: member.contact.map((value, index) => ({
-              type: index === 0 ? "mobile" : index === 1 ? "landline" : "email",
-              value,
+            contact: member.contact.map((contactField) => ({
+              type: contactField.type,
+              name: contactField.name,
+              value: contactField.value,
             })),
+            // contact: member.contact.map((value, index) => ({
+            //   type: index === 0 ? "mobile" : index === 1 ? "landline" : "email",
+            //   value,
+            // })),
           })),
         };
 
