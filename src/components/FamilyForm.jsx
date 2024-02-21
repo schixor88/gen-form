@@ -263,9 +263,9 @@ const FamilyForm = ({ onFormSubmit }) => {
                         b: 1, // Default value for 'b' property
                       },
                       gender: "", // Default value for gender
-                      dob_yyyy: "", // Default value for year of birth
-                      dob_mm: "", // Default value for month of birth
-                      dob_dd: "", // Default value for day of birth
+                      // dob_yyyy: "", // Default value for year of birth
+                      // dob_mm: "", // Default value for month of birth
+                      // dob_dd: "", // Default value for day of birth
                       education: "", // Default value for education
                       work_accomplishments: [], // Default value for work accomplishments
                       work_profession: [], // Default value for work profession
